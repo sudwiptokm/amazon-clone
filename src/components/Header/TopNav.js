@@ -41,7 +41,7 @@ export default function TopNav() {
         <div className="link flex items-center">
           <div className="relative">
             <ShoppingCartIcon className="h-10 font-bold" />
-            <span className="rounded-full px-1 text-xs text-black font-bold bg-yellow-400 absolute top-0 right-0">
+            <span className="rounded-full h-4 w-4 text-center text-xs text-black font-bold bg-yellow-400 absolute top-0 right-0">
               4
             </span>
           </div>
