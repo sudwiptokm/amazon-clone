@@ -4,8 +4,14 @@ import {
   ShoppingCartIcon,
 } from "@heroicons/react/24/outline";
 import React from "react";
+import { signIn, signOut, useSession } from "next-auth/react";
 
 export default function TopNav() {
+  const { data: session } = useSession();
+  if (session) {
+    console.log(session.user.name);
+  }
+
   return (
     <div className="flex items-center bg-amazon_blue p-1 flex-grow py-2">
       {/* Logo */}
@@ -30,8 +36,8 @@ export default function TopNav() {
 
       {/* Right Tabs */}
       <div className="text-white flex gap-6 px-4 whitespace-nowrap items-center text-xs">
-        <div className="link">
-          <p>Hello Sudwipto</p>
+        <div className="link" onClick={!session ? signIn : signOut}>
+          {session ? <p>Hello {session.user.name}</p> : <p>Sign In</p>}
           <p className="font-bold md:text-sm">Account and Lists</p>
         </div>
         <div className="link">
