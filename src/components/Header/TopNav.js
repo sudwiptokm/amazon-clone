@@ -54,19 +54,17 @@ export default function TopNav() {
           <p>Returns</p>
           <p className="font-bold md:text-sm">& Orders</p>
         </div>
-        <div className="link flex items-center">
+        <div
+          className="link flex items-center"
+          onClick={() => router.push("/checkout")}
+        >
           <div className="relative">
             <ShoppingCartIcon className="h-10 font-bold" />
             <span className="rounded-full h-4 w-4 text-center text-xs text-black font-bold bg-yellow-400 absolute top-0 right-0">
               {items.length}
             </span>
           </div>
-          <p
-            className="font-bold md:text-sm hidden md:inline mt-2"
-            onClick={() => router.push("/checkout")}
-          >
-            Basket
-          </p>
+          <p className="font-bold md:text-sm hidden md:inline mt-2">Basket</p>
         </div>
       </div>
     </div>

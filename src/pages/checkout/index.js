@@ -1,5 +1,6 @@
 import React from "react";
 import LeftCheckout from "../../components/Checkout/LeftCheckout";
+import RightCheckout from "../../components/Checkout/RightCheckout";
 import Header from "../../components/Header/Header";
 
 export default function Checkout() {
@@ -12,6 +13,7 @@ export default function Checkout() {
         <LeftCheckout />
 
         {/* Right Side */}
+        <RightCheckout />
       </main>
     </div>
   );
