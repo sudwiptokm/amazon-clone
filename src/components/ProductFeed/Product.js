@@ -9,13 +9,15 @@ export default function Product({ product }) {
   const [rating, setRating] = useState(2);
   const [hasPrime, setHasPrime] = useState(false);
 
-  const dispatch = useDispatch();
   useEffect(() => {
     setRating(Math.ceil(Math.random() * 5));
     if (Math.random() > 0.5) {
       setHasPrime(true);
     }
   }, []);
+
+  const dispatch = useDispatch();
+
 
   const addItemToBasket = () => {
     dispatch(addToBasket(product));

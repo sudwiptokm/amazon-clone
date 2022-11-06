@@ -2,6 +2,7 @@ import Image from "next/image";
 import React from "react";
 import { useSelector } from "react-redux";
 import { selectItems } from "../../slices/basketSlice";
+import CheckoutProduct from "./CheckoutProduct";
 
 export default function LeftCheckout() {
   const items = useSelector(selectItems);
@@ -23,6 +24,10 @@ export default function LeftCheckout() {
             ? "Your Amazon Basket is Empty"
             : "Shopping Basket"}
         </h1>
+
+        {items.map((item, idx) => (
+          <CheckoutProduct product={item} key={idx} />
+        ))}
       </div>
     </div>
   );
