@@ -3,11 +3,18 @@ import { useSelector } from "react-redux";
 import { selectItems, selectTotal } from "../../slices/basketSlice";
 import Currency from "react-currency-formatter";
 import { useSession } from "next-auth/react";
+import { loadStripe } from "@stripe/stripe-js";
+
+const stripePromise = loadStripe(process.env.stripe_public_key);
 
 export default function RightCheckout() {
   const items = useSelector(selectItems);
   const total = useSelector(selectTotal);
   const { data: session } = useSession();
+
+  const createCheckoutSession = async () => {
+    const stripe = await stripePromise;
+  };
 
   return (
     <div className="flex flex-col bg-white p-10 shadow-md">
@@ -22,6 +29,8 @@ export default function RightCheckout() {
 
           <button
             disabled={!session}
+            role="link"
+            onClick={createCheckoutSession}
             className={`button mt-2 ${
               !session
                 ? "from-gray-300 to-gray-500 border-gray-200 text-gray-300 cursor-not-allowed"
