@@ -16,14 +16,9 @@ export default async (req, res) => {
       unit_amount: item.price * 100,
     },
     quantity: 1,
-    // price: {
-    //   currency: "gbp",
-    //   unit_amount: item.price * 100,
-    // },
   }));
 
   const session = await stripe.checkout.sessions.create({
-    payment_method_types: ["card"],
     line_items: transformedItems,
     mode: "payment",
     success_url: `${process.env.HOST}/success`,
@@ -35,11 +30,11 @@ export default async (req, res) => {
     shipping_address_collection: {
       allowed_countries: ["GB", "US", "CA"],
     },
-    // shipping_rates: ["shr_1M8krSKRt2sh0tNxLWxolCY3"],
     shipping_options: [
       {
         shipping_rate_data: {
-          fixed_amount: { amount: 2, currency: "gbp" },
+          type: "fixed_amount",
+          fixed_amount: { amount: 299, currency: "gbp" },
           display_name: "Next Day Shipping",
           delivery_estimate: {
             minimum: { unit: "business_day", value: 1 },

@@ -12,7 +12,7 @@ import { selectItems } from "../../slices/basketSlice";
 export default function TopNav() {
   const { data: session } = useSession();
   if (session) {
-    console.log(session.user.name);
+    // console.log(session.user.name);
   }
 
   const router = useRouter();

@@ -15,13 +15,13 @@ export default function ProductFeed({ products }) {
       />
 
       {products.slice(4, 5).map((product) => (
-        <div className="md:col-span-2">
+        <div className="md:col-span-2" key={product.id}>
           <Product product={product} key={product.id} />
         </div>
       ))}
 
       {products.slice(5).map((product) => (
-        <div>
+        <div key={product.id}>
           <Product product={product} key={product.id} />
         </div>
       ))}

@@ -2,10 +2,8 @@ import Head from "next/head";
 import Banner from "../components/Header/Banner/Banner";
 import Header from "../components/Header/Header";
 import ProductFeed from "../components/ProductFeed/ProductFeed";
-import axios from "axios";
 
 export default function Home({ products }) {
-  console.log(products);
   return (
     <div className="bg-gray-100">
       <Head>
