@@ -1,6 +1,6 @@
-// import firebase from "firebase";
-import { initializeApp, getApps } from "firebase/app";
-import { getFirestore } from "firebase/firestore";
+import firebase from "firebase";
+// import { initializeApp, getApps } from "firebase/app";
+// import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCmiabYP2lR_X6x5X9q-IeS6c5YPsQGb_E",
@@ -11,9 +11,15 @@ const firebaseConfig = {
   appId: "1:665908287441:web:1f289a97d6e00e816932f0",
 };
 
-let app;
-if (!getApps) app = initializeApp(firebaseConfig);
+// let app;
+// if (!getApps().length) app = initializeApp(firebaseConfig);
 
-const db = getFirestore(app);
+const app = !firebase.apps.length
+  ? firebase.initializeApp(firebaseConfig)
+  : firebase.app();
+
+// const db = getFirestore();
+
+const db = app.firestore();
 
 export default db;

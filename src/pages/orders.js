@@ -1,11 +1,12 @@
 import { getSession, useSession } from "next-auth/react";
-import React from "react";
+import React, { useEffect } from "react";
 import db from "../../firebase";
 import Header from "../components/Header/Header";
 import moment from "moment";
 
 export default function Orders({ orders }) {
   const session = useSession();
+  console.log(orders);
 
   return (
     <div>
@@ -27,9 +28,11 @@ export default function Orders({ orders }) {
 export async function getServerSideProps(context) {
   const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
-  const session = getSession(context);
+  const session = await getSession(context);
 
-  if (!session) return { props: {} };
+  if (!session) {
+    return { props: {} };
+  }
 
   const stripeOrders = await db
     .collection("users")
@@ -39,7 +42,7 @@ export async function getServerSideProps(context) {
     .get();
 
   const orders = await Promise.all(
-    stripeOrders.doc.map(async (order) => ({
+    stripeOrders.docs.map(async (order) => ({
       id: order.id,
       amount: order.data().amount,
       amountShipping: order.data().amount_shipping,
