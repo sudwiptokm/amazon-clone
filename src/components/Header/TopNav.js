@@ -50,7 +50,7 @@ export default function TopNav() {
           {session ? <p>Hello {session.user.name}</p> : <p>Sign In</p>}
           <p className="font-bold md:text-sm">Account and Lists</p>
         </div>
-        <div className="link">
+        <div className="link" onClick={() => router.push("/orders")}>
           <p>Returns</p>
           <p className="font-bold md:text-sm">& Orders</p>
         </div>

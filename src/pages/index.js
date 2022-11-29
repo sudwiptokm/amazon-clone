@@ -1,3 +1,4 @@
+import { getSession } from "next-auth/react";
 import Head from "next/head";
 import Banner from "../components/Header/Banner/Banner";
 import Header from "../components/Header/Header";
@@ -26,9 +27,10 @@ export default function Home({ products }) {
 }
 
 export async function getServerSideProps(context) {
+  const session = await getSession(context);
   const products = await fetch("https://fakestoreapi.com/products")
     .then((res) => res.json())
     .then((json) => json);
 
-  return { props: { products } };
+  return { props: { products, session } };
 }

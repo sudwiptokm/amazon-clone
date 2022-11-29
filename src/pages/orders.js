@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 import db from "../../firebase";
 import Header from "../components/Header/Header";
 import moment from "moment";
+import Order from "../components/Order/Order";
 
 export default function Orders({ orders }) {
   const session = useSession();
@@ -17,9 +18,17 @@ export default function Orders({ orders }) {
           Your Orders
         </h1>
 
-        {session ? <h2>x Orders</h2> : <h2>Please Sign In to show orders</h2>}
+        {session ? (
+          <h2>{orders.length} Orders</h2>
+        ) : (
+          <h2>Please Sign In to show orders</h2>
+        )}
 
-        <div className="mt-5 space-y-4"></div>
+        <div className="mt-5 space-y-4">
+          {orders?.map((order) => (
+            <Order order={order} key={order.id} />
+          ))}
+        </div>
       </main>
     </div>
   );
@@ -56,5 +65,5 @@ export async function getServerSideProps(context) {
     }))
   );
 
-  return { props: { orders } };
+  return { props: { orders, session } };
 }
